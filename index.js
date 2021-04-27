@@ -2,7 +2,7 @@ const express = require('express')
 var bodyParser = require('body-parser')
 var cors = require('cors')
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000
 
 app.use(cors())
 
@@ -28,6 +28,6 @@ app.post('/kuchen/password', jsonParser, (req, res) => {
   }
 })
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
