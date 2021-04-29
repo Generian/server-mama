@@ -1,5 +1,3 @@
-const url = "https://server-mama.herokuapp.com/"
-
 const checkPassword = (element) => {
   if(event.key === 'Enter') {
     try {
@@ -8,7 +6,7 @@ const checkPassword = (element) => {
         password: pw
       }
   
-      fetch(`${url}kuchen/password`, {
+      fetch(`/api/password/kuchen`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -17,8 +15,12 @@ const checkPassword = (element) => {
       })
       .then(response => response.json())
       .then(data => {
-        console.log(data.link)
-        // window.location.href = data.link
+        if (data.correct_pw) {
+          window.location.href = data.link
+        } else {
+          console.log("wrong password")
+          console.log(data)
+        }
       })
       .catch(err => console.error(err))
     } catch {
