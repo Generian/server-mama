@@ -1,15 +1,16 @@
 const express = require('express')
 var bodyParser = require('body-parser')
-var cors = require('cors')
+const path = require('path');
+
 const app = express()
 const PORT = process.env.PORT || 3000
 
-app.use(cors())
+app.use(express.static('public'))
 
 var jsonParser = bodyParser.json()
 
 app.get('/', (req, res) => {
-  res.json({connection: 'OK'})
+  res.sendFile(path.join(__dirname, '/index.html'));
 })
 
 app.post('/kuchen/password', jsonParser, (req, res) => {
